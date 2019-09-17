@@ -34,7 +34,8 @@ export const loadFriends = createAction(
   '[Friends] Load'
 );
 export const loadFriendsSuccess = createAction(
-  '[Friends] Load Success'
+  '[Friends] Load Success',
+  props<{ friends: Friend[]}>()
 );
 
 const initialState = {
@@ -43,7 +44,7 @@ const initialState = {
 }
 
 const _appReducer = createReducer(initialState,
-  on(loadFriends, state => ({ ...state, friends: state.friends }))
+  on(loadFriendsSuccess, (state, { friends }) => ({ ...state, friends }))
 );
 
 const appReducer = (state, action) => _appReducer(state, action);
